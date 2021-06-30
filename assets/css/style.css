@@ -1,0 +1,136 @@
+    * {
+        /* Reset css */
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    html {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /*
+    1. Từ ngoài vào trong
+    2. Từ trên xuống dưới
+    3. Từ tổng quan đến chi tiết
+    */
+    /*
+    1. Vị trí
+    2. Kích thước (width; height)
+    3. Màu sắc
+    4. Kiểu dáng (font chữ)
+    */
+    
+    #main {}
+    
+    #header {
+        position: fixed;
+        z-index: 1;
+        height: 46px;
+        background-color: black;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    
+    #nav {
+        display: inline-block;
+    }
+    
+    #nav,
+    .sub-nav {
+        list-style-type: none;
+    }
+    
+    #nav>li {
+        display: inline-block;
+    }
+    
+    #nav li {
+        position: relative;
+    }
+    
+    #nav>li>a {
+        color: white;
+        text-transform: uppercase;
+    }
+    
+    #nav li a {
+        text-decoration: none;
+        line-height: 46px;
+        padding: 0 24px;
+        display: inline-block;
+    }
+    
+    #nav>li:hover>a,
+    #nav .sub-nav li:hover {
+        color: black;
+        background-color: #ccc;
+    }
+    
+    #nav .sub-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        min-width: 160px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    #nav .sub-nav a {
+        color: black;
+        padding: 0 12px;
+        line-height: 38px;
+    }
+    
+    #nav li:hover .sub-nav {
+        display: block;
+    }
+    
+    #nav .nav-arrow-down {
+        font-size: 10px;
+    }
+    
+    #header .search-btn {
+        float: right;
+        line-height: 46px;
+        padding: 0 21px;
+    }
+    
+    #header .search-btn:hover {
+        background-color: #f44336;
+        cursor: pointer;
+    }
+    
+    #header .search-icon {
+        color: white;
+        font-size: 20px;
+    }
+    
+    #slider {
+        position: relative;
+        margin-top: 46px;
+        padding-top: 50%;
+        background: url('/assets/img/slider/slider1.jpg') top center / cover no-repeat;
+    }
+
+    #slider .text-content{
+        position: absolute;
+        color: #fff;
+        bottom: 48px;
+        text-align: center;
+        width: 100%;
+    }
+
+    #slider .text-heading{
+        font-weight: 500;
+        font-size: 24px;
+    }
+
+    #slider .text-description{
+        font-size: 15px;
+        margin-top: 25px;
+    }
+    
+    #content {}
+    
+    #footer {}
