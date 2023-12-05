@@ -1,2 +1,418 @@
-<h1>Trang web đang trong quá trình hoàn thiện<h1>
-  <a href="https://www.facebook.com/bui.nhat.duy2000/">Trang cá nhân của tớ</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+
+    .slide-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .slider-button {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <div class="slides" id="imageSlider">
+    <!-- Images and names will be dynamically added here -->
+  </div>
+  <div class="slider-buttons">
+    <button class="slider-button" onclick="prevSlide()">Previous</button>
+    <button class="slider-button" onclick="nextSlide()">Next</button>
+  </div>
+</div>
+
+<script>
+  const imageSlider = document.getElementById('imageSlider');
+
+  // Replace with your actual file names and paths
+  const images = [
+  { path: 'src/male/bag/40-0.png', name: '40-0.png' },
+{ path: 'src/male/bag/41-0.png', name: '41-0.png' },
+{ path: 'src/male/bag/44-0.png', name: '44-0.png' },
+{ path: 'src/male/bag/45-0.png', name: '45-0.png' },
+{ path: 'src/male/bag/81-0.png', name: '81-0.png' },
+{ path: 'src/male/bag/81-1.png', name: '81-1.png' },
+{ path: 'src/male/bag/81-10.png', name: '81-10.png' },
+{ path: 'src/male/bag/81-11.png', name: '81-11.png' },
+{ path: 'src/male/bag/81-12.png', name: '81-12.png' },
+{ path: 'src/male/bag/81-13.png', name: '81-13.png' },
+{ path: 'src/male/bag/81-14.png', name: '81-14.png' },
+{ path: 'src/male/bag/81-15.png', name: '81-15.png' },
+{ path: 'src/male/bag/81-16.png', name: '81-16.png' },
+{ path: 'src/male/bag/81-2.png', name: '81-2.png' },
+{ path: 'src/male/bag/81-3.png', name: '81-3.png' },
+{ path: 'src/male/bag/81-4.png', name: '81-4.png' },
+{ path: 'src/male/bag/81-5.png', name: '81-5.png' },
+{ path: 'src/male/bag/81-6.png', name: '81-6.png' },
+{ path: 'src/male/bag/81-7.png', name: '81-7.png' },
+{ path: 'src/male/bag/81-8.png', name: '81-8.png' },
+{ path: 'src/male/bag/81-9.png', name: '81-9.png' },
+{ path: 'src/male/bag/82-0.png', name: '82-0.png' },
+{ path: 'src/male/bag/82-1.png', name: '82-1.png' },
+{ path: 'src/male/bag/82-10.png', name: '82-10.png' },
+{ path: 'src/male/bag/82-11.png', name: '82-11.png' },
+{ path: 'src/male/bag/82-12.png', name: '82-12.png' },
+{ path: 'src/male/bag/82-13.png', name: '82-13.png' },
+{ path: 'src/male/bag/82-14.png', name: '82-14.png' },
+{ path: 'src/male/bag/82-15.png', name: '82-15.png' },
+{ path: 'src/male/bag/82-16.png', name: '82-16.png' },
+{ path: 'src/male/bag/82-2.png', name: '82-2.png' },
+{ path: 'src/male/bag/82-3.png', name: '82-3.png' },
+{ path: 'src/male/bag/82-4.png', name: '82-4.png' },
+{ path: 'src/male/bag/82-5.png', name: '82-5.png' },
+{ path: 'src/male/bag/82-6.png', name: '82-6.png' },
+{ path: 'src/male/bag/82-7.png', name: '82-7.png' },
+{ path: 'src/male/bag/82-8.png', name: '82-8.png' },
+{ path: 'src/male/bag/82-9.png', name: '82-9.png' },
+{ path: 'src/male/bag/85-0.png', name: '85-0.png' },
+{ path: 'src/male/bag/85-1.png', name: '85-1.png' },
+{ path: 'src/male/bag/85-10.png', name: '85-10.png' },
+{ path: 'src/male/bag/85-11.png', name: '85-11.png' },
+{ path: 'src/male/bag/85-12.png', name: '85-12.png' },
+{ path: 'src/male/bag/85-13.png', name: '85-13.png' },
+{ path: 'src/male/bag/85-14.png', name: '85-14.png' },
+{ path: 'src/male/bag/85-15.png', name: '85-15.png' },
+{ path: 'src/male/bag/85-16.png', name: '85-16.png' },
+{ path: 'src/male/bag/85-17.png', name: '85-17.png' },
+{ path: 'src/male/bag/85-18.png', name: '85-18.png' },
+{ path: 'src/male/bag/85-19.png', name: '85-19.png' },
+{ path: 'src/male/bag/85-2.png', name: '85-2.png' },
+{ path: 'src/male/bag/85-20.png', name: '85-20.png' },
+{ path: 'src/male/bag/85-21.png', name: '85-21.png' },
+{ path: 'src/male/bag/85-22.png', name: '85-22.png' },
+{ path: 'src/male/bag/85-23.png', name: '85-23.png' },
+{ path: 'src/male/bag/85-24.png', name: '85-24.png' },
+{ path: 'src/male/bag/85-3.png', name: '85-3.png' },
+{ path: 'src/male/bag/85-4.png', name: '85-4.png' },
+{ path: 'src/male/bag/85-5.png', name: '85-5.png' },
+{ path: 'src/male/bag/85-6.png', name: '85-6.png' },
+{ path: 'src/male/bag/85-7.png', name: '85-7.png' },
+{ path: 'src/male/bag/85-8.png', name: '85-8.png' },
+{ path: 'src/male/bag/85-9.png', name: '85-9.png' },
+{ path: 'src/male/bag/86-0.png', name: '86-0.png' },
+{ path: 'src/male/bag/86-1.png', name: '86-1.png' },
+{ path: 'src/male/bag/86-10.png', name: '86-10.png' },
+{ path: 'src/male/bag/86-11.png', name: '86-11.png' },
+{ path: 'src/male/bag/86-12.png', name: '86-12.png' },
+{ path: 'src/male/bag/86-13.png', name: '86-13.png' },
+{ path: 'src/male/bag/86-14.png', name: '86-14.png' },
+{ path: 'src/male/bag/86-15.png', name: '86-15.png' },
+{ path: 'src/male/bag/86-16.png', name: '86-16.png' },
+{ path: 'src/male/bag/86-17.png', name: '86-17.png' },
+{ path: 'src/male/bag/86-18.png', name: '86-18.png' },
+{ path: 'src/male/bag/86-19.png', name: '86-19.png' },
+{ path: 'src/male/bag/86-2.png', name: '86-2.png' },
+{ path: 'src/male/bag/86-20.png', name: '86-20.png' },
+{ path: 'src/male/bag/86-21.png', name: '86-21.png' },
+{ path: 'src/male/bag/86-22.png', name: '86-22.png' },
+{ path: 'src/male/bag/86-23.png', name: '86-23.png' },
+{ path: 'src/male/bag/86-3.png', name: '86-3.png' },
+{ path: 'src/male/bag/86-4.png', name: '86-4.png' },
+{ path: 'src/male/bag/86-5.png', name: '86-5.png' },
+{ path: 'src/male/bag/86-6.png', name: '86-6.png' },
+{ path: 'src/male/bag/86-7.png', name: '86-7.png' },
+{ path: 'src/male/bag/86-8.png', name: '86-8.png' },
+{ path: 'src/male/bag/86-9.png', name: '86-9.png' },
+{ path: 'src/male/bag/112-0.png', name: '112-0.png' },
+{ path: 'src/male/bag/112-1.png', name: '112-1.png' },
+{ path: 'src/male/bag/112-2.png', name: '112-2.png' },
+{ path: 'src/male/bag/112-3.png', name: '112-3.png' },
+{ path: 'src/male/bag/113-0.png', name: '113-0.png' },
+{ path: 'src/male/bag/114-0.png', name: '114-0.png' },
+{ path: 'src/male/bag/115-0.png', name: '115-0.png' },
+{ path: 'src/male/bag/116-0.png', name: '116-0.png' },
+{ path: 'src/male/bag/117-0.png', name: '117-0.png' },
+{ path: 'src/male/bag/117-1.png', name: '117-1.png' },
+{ path: 'src/male/bag/118-0.png', name: '118-0.png' },
+{ path: 'src/male/bag/119-0.png', name: '119-0.png' },
+{ path: 'src/male/bag/119-1.png', name: '119-1.png' },
+{ path: 'src/male/bag/120-0.png', name: '120-0.png' },
+{ path: 'src/male/bag/121-0.png', name: '121-0.png' },
+{ path: 'src/male/bag/122-0.png', name: '122-0.png' },
+{ path: 'src/male/bag/122-1.png', name: '122-1.png' },
+{ path: 'src/male/bag/122-2.png', name: '122-2.png' },
+{ path: 'src/male/bag/123-0.png', name: '123-0.png' },
+{ path: 'src/male/bag/124-0.png', name: '124-0.png' },
+{ path: 'src/male/bag/125-0.png', name: '125-0.png' },
+{ path: 'src/male/bag/126-0.png', name: '126-0.png' },
+{ path: 'src/male/bag/127-0.png', name: '127-0.png' },
+{ path: 'src/male/bag/127-1.png', name: '127-1.png' },
+{ path: 'src/male/bag/128-0.png', name: '128-0.png' },
+{ path: 'src/male/bag/129-0.png', name: '129-0.png' },
+{ path: 'src/male/bag/129-1.png', name: '129-1.png' },
+{ path: 'src/male/bag/130-0.png', name: '130-0.png' },
+{ path: 'src/male/bag/131-0.png', name: '131-0.png' },
+{ path: 'src/male/bag/132-0.png', name: '132-0.png' },
+{ path: 'src/male/bag/133-0.png', name: '133-0.png' },
+{ path: 'src/male/bag/134-0.png', name: '134-0.png' },
+{ path: 'src/male/bag/135-0.png', name: '135-0.png' },
+{ path: 'src/male/bag/136-0.png', name: '136-0.png' },
+{ path: 'src/male/bag/136-1.png', name: '136-1.png' },
+{ path: 'src/male/bag/136-2.png', name: '136-2.png' },
+{ path: 'src/male/bag/136-3.png', name: '136-3.png' },
+{ path: 'src/male/bag/136-4.png', name: '136-4.png' },
+{ path: 'src/male/bag/136-5.png', name: '136-5.png' },
+{ path: 'src/male/bag/136-6.png', name: '136-6.png' },
+{ path: 'src/male/bag/136-7.png', name: '136-7.png' },
+{ path: 'src/male/bag/136-8.png', name: '136-8.png' },
+{ path: 'src/male/bag/136-9.png', name: '136-9.png' },
+{ path: 'src/male/bag/137-0.png', name: '137-0.png' },
+{ path: 'src/male/bag/138-0.png', name: '138-0.png' },
+{ path: 'src/male/bag/138-1.png', name: '138-1.png' },
+{ path: 'src/male/bag/138-2.png', name: '138-2.png' },
+{ path: 'src/male/bag/138-3.png', name: '138-3.png' },
+{ path: 'src/male/bag/138-4.png', name: '138-4.png' },
+{ path: 'src/male/bag/139-0.png', name: '139-0.png' },
+{ path: 'src/male/bag/140-0.png', name: '140-0.png' },
+{ path: 'src/male/bag/140-1.png', name: '140-1.png' },
+{ path: 'src/male/bag/140-10.png', name: '140-10.png' },
+{ path: 'src/male/bag/140-11.png', name: '140-11.png' },
+{ path: 'src/male/bag/140-12.png', name: '140-12.png' },
+{ path: 'src/male/bag/140-13.png', name: '140-13.png' },
+{ path: 'src/male/bag/140-14.png', name: '140-14.png' },
+{ path: 'src/male/bag/140-15.png', name: '140-15.png' },
+{ path: 'src/male/bag/140-16.png', name: '140-16.png' },
+{ path: 'src/male/bag/140-17.png', name: '140-17.png' },
+{ path: 'src/male/bag/140-18.png', name: '140-18.png' },
+{ path: 'src/male/bag/140-19.png', name: '140-19.png' },
+{ path: 'src/male/bag/140-2.png', name: '140-2.png' },
+{ path: 'src/male/bag/140-20.png', name: '140-20.png' },
+{ path: 'src/male/bag/140-3.png', name: '140-3.png' },
+{ path: 'src/male/bag/140-4.png', name: '140-4.png' },
+{ path: 'src/male/bag/140-5.png', name: '140-5.png' },
+{ path: 'src/male/bag/140-6.png', name: '140-6.png' },
+{ path: 'src/male/bag/140-7.png', name: '140-7.png' },
+{ path: 'src/male/bag/140-8.png', name: '140-8.png' },
+{ path: 'src/male/bag/140-9.png', name: '140-9.png' },
+{ path: 'src/male/bag/141-0.png', name: '141-0.png' },
+{ path: 'src/male/bag/142-0.png', name: '142-0.png' },
+{ path: 'src/male/bag/142-1.png', name: '142-1.png' },
+{ path: 'src/male/bag/142-2.png', name: '142-2.png' },
+{ path: 'src/male/bag/142-3.png', name: '142-3.png' },
+{ path: 'src/male/bag/142-4.png', name: '142-4.png' },
+{ path: 'src/male/bag/142-5.png', name: '142-5.png' },
+{ path: 'src/male/bag/143-0.png', name: '143-0.png' },
+{ path: 'src/male/bag/144-0.png', name: '144-0.png' },
+{ path: 'src/male/bag/145-0.png', name: '145-0.png' },
+{ path: 'src/male/bag/145-1.png', name: '145-1.png' },
+{ path: 'src/male/bag/145-2.png', name: '145-2.png' },
+{ path: 'src/male/bag/146-0.png', name: '146-0.png' },
+{ path: 'src/male/bag/147-0.png', name: '147-0.png' },
+{ path: 'src/male/bag/147-1.png', name: '147-1.png' },
+{ path: 'src/male/bag/147-2.png', name: '147-2.png' },
+{ path: 'src/male/bag/147-3.png', name: '147-3.png' },
+{ path: 'src/male/bag/147-4.png', name: '147-4.png' },
+{ path: 'src/male/bag/147-5.png', name: '147-5.png' },
+{ path: 'src/male/bag/147-6.png', name: '147-6.png' },
+{ path: 'src/male/bag/148-0.png', name: '148-0.png' },
+{ path: 'src/male/bag/148-1.png', name: '148-1.png' },
+{ path: 'src/male/bag/148-2.png', name: '148-2.png' },
+{ path: 'src/male/bag/148-3.png', name: '148-3.png' },
+{ path: 'src/male/bag/148-4.png', name: '148-4.png' },
+{ path: 'src/male/bag/149-0.png', name: '149-0.png' },
+{ path: 'src/male/bag/150-0.png', name: '150-0.png' },
+{ path: 'src/male/bag/150-1.png', name: '150-1.png' },
+{ path: 'src/male/bag/150-2.png', name: '150-2.png' },
+{ path: 'src/male/bag/150-3.png', name: '150-3.png' },
+{ path: 'src/male/bag/150-4.png', name: '150-4.png' },
+{ path: 'src/male/bag/151-0.png', name: '151-0.png' },
+{ path: 'src/male/bag/151-1.png', name: '151-1.png' },
+{ path: 'src/male/bag/151-10.png', name: '151-10.png' },
+{ path: 'src/male/bag/151-11.png', name: '151-11.png' },
+{ path: 'src/male/bag/151-12.png', name: '151-12.png' },
+{ path: 'src/male/bag/151-13.png', name: '151-13.png' },
+{ path: 'src/male/bag/151-14.png', name: '151-14.png' },
+{ path: 'src/male/bag/151-15.png', name: '151-15.png' },
+{ path: 'src/male/bag/151-16.png', name: '151-16.png' },
+{ path: 'src/male/bag/151-2.png', name: '151-2.png' },
+{ path: 'src/male/bag/151-3.png', name: '151-3.png' },
+{ path: 'src/male/bag/151-4.png', name: '151-4.png' },
+{ path: 'src/male/bag/151-5.png', name: '151-5.png' },
+{ path: 'src/male/bag/151-6.png', name: '151-6.png' },
+{ path: 'src/male/bag/151-7.png', name: '151-7.png' },
+{ path: 'src/male/bag/151-8.png', name: '151-8.png' },
+{ path: 'src/male/bag/151-9.png', name: '151-9.png' },
+{ path: 'src/male/bag/152-0.png', name: '152-0.png' },
+{ path: 'src/male/bag/153-0.png', name: '153-0.png' },
+{ path: 'src/male/bag/154-0.png', name: '154-0.png' },
+{ path: 'src/male/bag/155-0.png', name: '155-0.png' },
+{ path: 'src/male/bag/156-0.png', name: '156-0.png' },
+{ path: 'src/male/bag/156-1.png', name: '156-1.png' },
+{ path: 'src/male/bag/156-2.png', name: '156-2.png' },
+{ path: 'src/male/bag/157-0.png', name: '157-0.png' },
+{ path: 'src/male/bag/157-1.png', name: '157-1.png' },
+{ path: 'src/male/bag/157-2.png', name: '157-2.png' },
+{ path: 'src/male/bag/157-3.png', name: '157-3.png' },
+{ path: 'src/male/bag/160-0.png', name: '160-0.png' },
+{ path: 'src/male/bag/160-1.png', name: '160-1.png' },
+{ path: 'src/male/bag/160-2.png', name: '160-2.png' },
+{ path: 'src/male/bag/160-3.png', name: '160-3.png' },
+{ path: 'src/male/bag/160-4.png', name: '160-4.png' },
+{ path: 'src/male/bag/160-5.png', name: '160-5.png' },
+{ path: 'src/male/bag/160-6.png', name: '160-6.png' },
+{ path: 'src/male/bag/161-0.png', name: '161-0.png' },
+{ path: 'src/male/bag/161-1.png', name: '161-1.png' },
+{ path: 'src/male/bag/161-2.png', name: '161-2.png' },
+{ path: 'src/male/bag/161-3.png', name: '161-3.png' },
+{ path: 'src/male/bag/162-0.png', name: '162-0.png' },
+{ path: 'src/male/bag/162-1.png', name: '162-1.png' },
+{ path: 'src/male/bag/162-2.png', name: '162-2.png' },
+{ path: 'src/male/bag/162-3.png', name: '162-3.png' },
+{ path: 'src/male/bag/162-4.png', name: '162-4.png' },
+{ path: 'src/male/bag/162-5.png', name: '162-5.png' },
+{ path: 'src/male/bag/162-6.png', name: '162-6.png' },
+{ path: 'src/male/bag/162-7.png', name: '162-7.png' },
+{ path: 'src/male/bag/162-8.png', name: '162-8.png' },
+{ path: 'src/male/bag/162-9.png', name: '162-9.png' },
+{ path: 'src/male/bag/164-0.png', name: '164-0.png' },
+{ path: 'src/male/bag/164-1.png', name: '164-1.png' },
+{ path: 'src/male/bag/164-2.png', name: '164-2.png' },
+{ path: 'src/male/bag/165-0.png', name: '165-0.png' },
+{ path: 'src/male/bag/165-1.png', name: '165-1.png' },
+{ path: 'src/male/bag/166-0.png', name: '166-0.png' },
+{ path: 'src/male/bag/166-1.png', name: '166-1.png' },
+{ path: 'src/male/bag/166-2.png', name: '166-2.png' },
+{ path: 'src/male/bag/167-0.png', name: '167-0.png' },
+{ path: 'src/male/bag/167-1.png', name: '167-1.png' },
+{ path: 'src/male/bag/168-0.png', name: '168-0.png' },
+{ path: 'src/male/bag/168-1.png', name: '168-1.png' },
+{ path: 'src/male/bag/168-2.png', name: '168-2.png' },
+{ path: 'src/male/bag/169-0.png', name: '169-0.png' },
+{ path: 'src/male/bag/169-1.png', name: '169-1.png' },
+{ path: 'src/male/bag/170-0.png', name: '170-0.png' },
+{ path: 'src/male/bag/170-1.png', name: '170-1.png' },
+{ path: 'src/male/bag/171-0.png', name: '171-0.png' },
+{ path: 'src/male/bag/172-0.png', name: '172-0.png' },
+{ path: 'src/male/bag/172-1.png', name: '172-1.png' },
+{ path: 'src/male/bag/172-2.png', name: '172-2.png' },
+{ path: 'src/male/bag/173-0.png', name: '173-0.png' },
+{ path: 'src/male/bag/174-0.png', name: '174-0.png' },
+{ path: 'src/male/bag/174-1.png', name: '174-1.png' },
+{ path: 'src/male/bag/174-2.png', name: '174-2.png' },
+{ path: 'src/male/bag/175-0.png', name: '175-0.png' },
+{ path: 'src/male/bag/176-0.png', name: '176-0.png' },
+{ path: 'src/male/bag/176-1.png', name: '176-1.png' },
+{ path: 'src/male/bag/177-0.png', name: '177-0.png' },
+{ path: 'src/male/bag/177-1.png', name: '177-1.png' },
+{ path: 'src/male/bag/178-0.png', name: '178-0.png' },
+{ path: 'src/male/bag/178-1.png', name: '178-1.png' },
+{ path: 'src/male/bag/179-0.png', name: '179-0.png' },
+{ path: 'src/male/bag/180-0.png', name: '180-0.png' },
+{ path: 'src/male/bag/181-0.png', name: '181-0.png' },
+{ path: 'src/male/bag/181-1.png', name: '181-1.png' },
+{ path: 'src/male/bag/181-2.png', name: '181-2.png' },
+{ path: 'src/male/bag/181-3.png', name: '181-3.png' },
+{ path: 'src/male/bag/181-4.png', name: '181-4.png' },
+{ path: 'src/male/bag/182-0.png', name: '182-0.png' },
+{ path: 'src/male/bag/183-0.png', name: '183-0.png' },
+{ path: 'src/male/bag/184-0.png', name: '184-0.png' },
+{ path: 'src/male/bag/185-0.png', name: '185-0.png' },
+{ path: 'src/male/bag/186-0.png', name: '186-0.png' },
+{ path: 'src/male/bag/187-0.png', name: '187-0.png' },
+{ path: 'src/male/bag/188-0.png', name: '188-0.png' },
+{ path: 'src/male/bag/188-1.png', name: '188-1.png' },
+{ path: 'src/male/bag/188-2.png', name: '188-2.png' },
+{ path: 'src/male/bag/188-3.png', name: '188-3.png' },
+{ path: 'src/male/bag/188-4.png', name: '188-4.png' },
+{ path: 'src/male/bag/189-0.png', name: '189-0.png' },
+{ path: 'src/male/bag/190-0.png', name: '190-0.png' },
+{ path: 'src/male/bag/191-0.png', name: '191-0.png' },
+{ path: 'src/male/bag/192-0.png', name: '192-0.png' },
+
+  ];
+
+  images.forEach(image => {
+    const slide = document.createElement('div');
+    slide.classList.add('slide');
+
+    const img = document.createElement('img');
+    img.src = image.path;
+    img.alt = image.name;
+
+    const slideInfo = document.createElement('div');
+    slideInfo.classList.add('slide-info');
+    slideInfo.textContent = image.name;
+
+    slide.appendChild(img);
+    slide.appendChild(slideInfo);
+
+    imageSlider.appendChild(slide);
+  });
+
+  let currentIndex = 0;
+  const totalSlides = images.length;
+
+  function showSlide(index) {
+    if (index < 0) {
+      currentIndex = totalSlides - 1;
+    } else if (index >= totalSlides) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+
+    const transformValue = -currentIndex * 100 + '%';
+    imageSlider.style.transform = `translateX(${transformValue})`;
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+</script>
+
+</body>
+</html>
