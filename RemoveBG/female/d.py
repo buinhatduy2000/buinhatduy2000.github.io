@@ -3,7 +3,7 @@ import rembg
 from tqdm import tqdm
 
 # Đường dẫn thư mục chứa các hình ảnh
-input_dir = "D:\\_MixiCorp-Data\\GTA V\\buinhatduy2000.github.io\\mixicity\\male\\top"
+input_dir = "D:\\_MixiCorp-Data\\GTA V\\buinhatduy2000.github.io\\mixicity\\female\\hat"
 
 # Tạo thư mục đầu ra với tên tương tự như thư mục đầu vào nhưng có thêm "_output" ở cuối
 output_dir = input_dir.rstrip(os.sep) + "_output" + os.sep
